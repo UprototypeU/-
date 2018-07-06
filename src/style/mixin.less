@@ -1,0 +1,98 @@
+@mc: #3190e8; //主色调
+@sc: #e4e4e4; //辅色
+@fs-one:16px; //一级标题
+@fs-two:14px; //二级标题
+@fs-three:14px; //三级标题
+
+//内外边距
+.mt{
+	margin-top: 10px;
+}
+.mr{
+	margin-right: 10px;
+}
+.mb{
+	margin-bottom: 10px;
+}
+.ml{
+	margin-left: 10px;
+}
+.pt{
+	padding-top: 10px;
+}
+.pr{
+	padding-right: 10px;
+}
+.pb{
+	padding-bottom: 10px;
+}
+.pl{
+	padding-left: 10px;
+}
+// 背景图片地址和大小
+.bis(@url) {
+	background-image: url(@url);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+//定位全屏
+.allcover{
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+//transform上下左右居中
+.ctt {  
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+//定位上下左右居中
+.ctp(@width, @height) {  
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    margin-top: -@height/2;
+    margin-left: -@width/2;
+}
+
+//定位上下居中
+.tb {  
+	position: absolute;
+	top: 50%;
+    transform: translateY(-50%);
+}
+
+//定位左右居中
+.lr {  
+	position: absolute;
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+//宽高
+.wh(@width, @height){
+	width: @width;
+	height: @height;
+}
+
+//字体大小、行高、字体 (1级标题，2级标题)
+.ft(@size, @line-height) {  
+	font-size: @size;
+	line-height:@line-height;
+}
+
+//字体大小，颜色
+.sc(@size, @color){
+	font-size: @size;
+	color: @color;
+}
+
+//flex 布局和 子元素 对其方式
+.fj(@type: space-between){
+	display: flex;
+	justify-content: @type;
+}
