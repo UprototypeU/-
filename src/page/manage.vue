@@ -1,67 +1,23 @@
 <template>
 	<div class="manage_page fillcontain">
-		<el-row>
-			<el-col :span="18">
-				金海鹰
-			</el-col>
-			<el-col :span="6">
-					<el-row>
-						<el-col :span="6">
-							<img :src="baseImgPath + adminInfo.avatar" class="avator">
-						</el-col>
-						<el-col :span="12">
-							admin（管理员）
-						</el-col>
-						<el-col :span="6">
-							<div @click="handleCommand()">
-                退出
-              </div>
-						</el-col>
-					</el-row>
+		<el-row class="headerManage">
+			<el-col :span="21" class="left">贸易金融平台</el-col>
+			<el-col :span="3" class="right">
+        <el-dropdown @command="handleCommand" menu-align='start'>
+          <span class="el-dropdown-link">
+            <i class=""></i> admin（管理员）
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="home">修改密码</el-dropdown-item>
+            <el-dropdown-item command="singout">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
 			</el-col>
 		</el-row>
-		<el-row style="height: 100%;">
-	  		<el-col :span="4" style="background-color: #324057;">
-					  <!-- <el-menu :default-active="defaultActive" class="el-menu-vertical-demo" router>
-              <el-submenu index="1">
-                <span slot="title"><i class="el-icon-menu"></i>我的工作台</span>
-                <el-menu-item-group>
-                  <el-menu-item index="myBanchBacklog" ><i class="el-icon-menu"></i>待办事项</el-menu-item>
-                  <el-menu-item index="myBanchQuery"><i class="el-icon-menu"></i>查询</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-              <el-submenu index="2">
-                <span slot="title"><i class="el-icon-menu"></i>金融业务</span>
-                <el-menu-item-group>
-                  <el-menu-item index="financingProcess"><i class="el-icon-menu"></i>融资受理</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-              <el-submenu index="3">
-                <span slot="title"><i class="el-icon-menu"></i>签章中心</span>
-                <el-menu-item-group>
-                  <el-menu-item index="signatureDispose"><i class="el-icon-menu"></i>处理</el-menu-item>
-                  <el-menu-item index="signatureQuery"><i class="el-icon-menu"></i>查询</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-              <el-submenu index="4">
-                <span slot="title"><i class="el-icon-menu"></i>账单中心</span>
-                <el-submenu index="4-1">
-                  <span slot="title"><i class="el-icon-menu"></i>登记</span>
-                  <el-menu-item index="billsRegisterCapital">放款账单</el-menu-item>
-                  <el-menu-item index="billsRegisterReceivable">应收账款兑付账单</el-menu-item>
-                  <el-menu-item index="billsRegisterCredit">融资本金账单</el-menu-item>
-                  <el-menu-item index="billsRegisterInterest">融资利息账单</el-menu-item>
-                </el-submenu>
-              </el-submenu>
-              <el-menu-item index="userSetting" @click="addTab('待办事项')">
-                <i class="el-icon-setting"></i>
-                <span slot="title">账户设置</span>
-              </el-menu-item>
-            </el-menu> -->
-
-
-
-          <el-menu router unique-opened :default-active="defaultActive" class="el-menu-vertical-demo">
+		<el-row :style="{'height':heigh-70+'px'}" class="mainManage">
+	  		<el-col class="left" :span="4">
+          <el-menu background-color="#4A6CD5" text-color="#fff" active-text-color="#fff" router unique-opened 
+            :default-active="defaultActive">
               <div v-for="(i,j) in menuData" :key="j" :index="j.toString()">
                 <el-menu-item @click="menuOpen(i)" v-if="typeof i.children === 'undefined'"
                 :index="i.component">
@@ -80,12 +36,12 @@
               </div>
             </el-menu>
 				</el-col>
-			<el-col :span="20" style="height: 100%;overflow: auto;">
-        <head-top :editable-tabs = "editableTabs" :editable-active= "editableActive"></head-top>
-				<keep-alive>
-				    <router-view></router-view>
-				</keep-alive>
-			</el-col>
+        <el-col class="right" :span="20" style="height: 100%;overflow: auto;">
+          <head-top :editable-tabs = "editableTabs" :editable-active= "editableActive"></head-top>
+          <keep-alive>
+              <router-view></router-view>
+          </keep-alive>
+        </el-col>
 		</el-row>
   	</div>
 </template>
@@ -94,14 +50,15 @@ import { baseImgPath } from "@/config/env";
 import { signout } from "@/api/getData";
 import { mapActions, mapState } from "vuex";
 import headTop from "../components/headTop";
-import {arrayUnit} from '../config/mUtils.js'
+import { arrayUnit } from "../config/mUtils.js";
 export default {
   data() {
     return {
       baseImgPath,
-      editableTabs:[],
-      editableTabsValue:'',
-      editableActive:'myBanchBacklog',
+      editableTabs: [],
+      editableTabsValue: "",
+      editableActive: "myBanchBacklog",
+      heigh:'',
       menuData: [
         {
           icon: "el-icon-menu",
@@ -179,15 +136,18 @@ export default {
       ]
     };
   },
-  created() {
+  created() {  //此处拒绝dom操作
     if (!this.adminInfo.id) {
       this.getAdminData();
     }
-    this.editableTabs.push(this.menuData[0].children[0])
-    this.editableTabs = arrayUnit(this.editableTabs)
+    this.editableTabs.push(this.menuData[0].children[0]);
+    this.editableTabs = arrayUnit(this.editableTabs);
   },
   components: {
     headTop
+  },
+  mounted() {  // 此处只执行一次
+    this.heigh = document.documentElement.clientHeight
   },
   computed: {
     ...mapState(["adminInfo"]),
@@ -197,18 +157,22 @@ export default {
   },
   methods: {
     ...mapActions(["getAdminData"]),
-    async handleCommand() {
+    async handleCommand(command) {
+      if (command == "home") {
+        alert("这里出弹框");
+      } else if (command == "singout") {
         this.$message({
           type: "success",
           message: "退出成功"
         });
         this.$router.push("/");
+      }
     },
-    menuOpen:function(i){
-      this.editableTabs.push(i)
-      this.editableTabs = arrayUnit(this.editableTabs)
-      this.editableActive = i.component
-    },
+    menuOpen: function(i) {
+      this.editableTabs.push(i);
+      this.editableTabs = arrayUnit(this.editableTabs);
+      this.editableActive = i.component;
+    }
   }
 };
 </script>
@@ -216,11 +180,50 @@ export default {
 
 <style lang="less" scoped>
 @import "../style/mixin";
-#app .el-menu-item-group__title{
-    display: none;
+#app .el-menu-item-group__title {
+  display: none;
 }
 .avator {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 }
+.headerManage {
+  width: 100%;
+  padding-left: 64px;
+  height: 70px;
+  line-height: 70px;
+  color: #fff;
+  .bis("../assets/img/headerBg.png");
+  .left {
+    font-size: 20px;
+    
+  }
+  .right {
+    .el-dropdown-link {
+      color: #fff;
+    }
+  }
+}
+.mainManage{
+  .left{
+    height: 100%;
+    background-color: @mc;
+    .el-menu{
+      background-color: @mc;
+      .el-submenu__title > span{
+        color: @sc;
+        font-size: @fs-one;
+      }
+      .el-menu-item{
+        color: @sc;
+        background-color: @mc;
+        font-size: @fs-two;
+      }
+    }
+  }
+  .right{
+    height: 100%;
+  }
+}
+
 </style>

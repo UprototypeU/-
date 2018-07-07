@@ -48,10 +48,6 @@ html,body{
     // background-color: #F5F5F5;
 }
 
-.fillcontain{
-    height: 100%;
-    width: 100%;
-}
 .clear:after{
     content: '';
     display: block;
@@ -86,9 +82,21 @@ html,body{
 .show{
     display: block;
 }
-
+#app .el-menu-item-group__title{
+    display: none;
+}
 .ellipsis{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.mainManage > .left {
+    .el-submenu__icon-arrow{
+        color: #fff;
+    }
+    .el-submenu .el-menu-item:hover, .el-submenu__title:hover {
+        background-color: #4A6CD5;
+    }
+}
+

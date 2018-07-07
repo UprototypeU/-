@@ -8,37 +8,40 @@
 </template>
 
 <script>
-import { InputValidators } from "../../config/mUtils.js";
+import "../../config/regex.js";
 export default {
   data() {
     return {
-        value:''
+      value: ""
     };
   },
   components: {},
-  created() {
-    var res = new InputValidators();
-    // console.log(res.addValidator)
-    // console.log(InputValidators)
-
-    // res.importStrategies(validationStrategies);
-    res.addValidationStrategy("isEqual", function(errMsg, value1, value2) {
-      if (value1 !== value2) {
-        return this.buildInvalidObj(errMsg, value1);
-      }
-    });
-    res.addValidator("isNoEmpty", "用户名不能为空", this.value);
-    var result = res.check();
-    console.log(result);
-    // if (result) {
-    //   // alert(result.errMsg);
-    //   // result.element.focus();
-    //   // result.element.select();
-    //   return false;
-    // }
+  created() {},
+  mounted() {
   },
-  mounted() {},
-  methods: {},
+  methods: {
+    regex: function() {
+      var res = new InputValidators();
+      // console.log(res.addValidator)
+      // console.log(InputValidators)
+
+      // res.importStrategies(validationStrategies);
+      // res.addValidationStrategy("isEqual", function(errMsg, value1, value2) {
+      //   if (value1 !== value2) {
+      //     return this.buildInvalidObj(errMsg, value1);
+      //   }
+      // });
+      res.addValidator("isNoEmpty", "用户名不能为空", this.value);
+      var result = res.check();
+      console.log(result);
+      // if (result) {
+      //   // alert(result.errMsg);
+      //   // result.element.focus();
+      //   // result.element.select();
+      //   return false;
+      // }
+    }
+  },
   watch: {}
 };
 </script>
