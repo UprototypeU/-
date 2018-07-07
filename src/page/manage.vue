@@ -205,6 +205,8 @@ export default {
   }
 }
 .mainManage{
+  padding-top: 20px;
+  background-color: #ccc;
   .left{
     height: 100%;
     background-color: @mc;
@@ -223,6 +225,7 @@ export default {
   }
   .right{
     height: 100%;
+    padding-left: 15px;
   }
 }
 

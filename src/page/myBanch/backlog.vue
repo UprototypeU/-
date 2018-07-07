@@ -1,6 +1,6 @@
 <template>
     <div class="fillcontain">
-        <div class="table_container">
+        <div class="table_container" :style="{'height':heigh-150+'px'}">
             <el-row>
                 <el-col :span="15">
                     <div class="grid-content mr">
@@ -61,6 +61,7 @@
 export default {
   data() {
     return {
+        heigh:'',
         data:[{
             name1:'项目编号',
             name2:'项目编号1',
@@ -80,7 +81,9 @@ export default {
   },
   components: {},
   created() {},
-  mounted() {},
+  mounted() {
+      this.heigh = document.documentElement.clientHeight
+  },
   methods: {},
   watch: {}
 };

@@ -52,7 +52,33 @@ export const arrayUnit = (arr) => {
     return res;
 }
 
-
+/**
+ * 正则验证
+ */
+export const checkAll = (type, value, msg) => {  //checkAll函数,type是你要验证的类型,value要是验证该类型的值，msg是验证失败后弹出的提示语
+    switch (type) {
+        case 'Phone':   //手机正则
+            if (!(/^1[34578]\d{9}$/.test(value))) {
+                return msg;
+            }
+            break;
+            case 'Email'://邮箱正则
+            if (!(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value))) {
+                return msg;
+            }
+            break;
+            case 'psd': //密码正则
+            if (!(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value))) {
+                return msg;
+            }
+            break;
+            case 'psd1':  //确认密码正则
+            if (!(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value))) {
+                return msg;
+            }
+            break;
+    }
+}
 
 /**
  * 页面到达底部，加载更多
