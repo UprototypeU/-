@@ -1,39 +1,18 @@
 @mc: #4A6CD5; //主色调
-@sc: #fff; //字体颜色
+@sc: #fff; //侧边栏字体颜色
 @fs-one:16px; //一级标题
 @fs-two:14px; //二级标题
 @fs-three:14px; //三级标题
+@fs-color: #323232; //描述性字体颜色
 
-//内外边距
-.mt{
-	margin-top: 10px;
-}
-.mr{
-	margin-right: 10px;
-}
-.mb{
-	margin-bottom: 10px;
-}
-.ml{
-	margin-left: 10px;
-}
-.pt{
-	padding-top: 10px;
-}
-.pr{
-	padding-right: 10px;
-}
-.pb{
-	padding-bottom: 10px;
-}
-.pl{
-	padding-left: 10px;
-}
+@f18:18px;
+
 // 背景图片地址和大小
 .bis(@url) {
 	background-image: url(@url);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+
 }
 
 //定位全屏
@@ -60,7 +39,7 @@
 }
 
 //定位上下居中
-.tb {  
+.tb {
 	position: absolute;
 	top: 50%;
     transform: translateY(-50%);

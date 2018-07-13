@@ -35,6 +35,13 @@ export default {
     },
     removeTab(targetName) {
       console.log(targetName)
+      let data = this.editableTabs
+      data.filter((data,i)=>{
+        if(data.component == targetName && targetName !=='myBanchBacklog'){
+          data.splice(i,1)
+        }
+      })
+      // this.myBanchBacklog
     }
   },
   watch: {

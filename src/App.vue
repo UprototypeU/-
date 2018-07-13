@@ -11,5 +11,9 @@
 </script>
 
 <style lang="less">
-	@import './style/common';
+    @import './style/common';
+    @import './assets/iconFont/iconfont.css';
+    .fillcontain{
+        height: 100%;
+    }
 </style>

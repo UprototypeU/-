@@ -1,37 +1,27 @@
 <template>
-    <div class="fillcontain register">
+    <div class="fillcontain forgetPwdStep2">
         <div class="table_container">
-            <h3>用户注册</h3>
+            <h3>修改密码</h3>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
-                <el-form-item prop="uesr">
-                    <el-input type="text" placeholder="请输入用户名" v-model="ruleForm.user" auto-complete="off"></el-input>
-                </el-form-item>
                 <el-form-item prop="pass">
                     <el-input type="password" placeholder="请输入密码" v-model="ruleForm.pass" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item prop="checkPass">
-                    <el-input type="password" placeholder="请再次输入密码" v-model="ruleForm.checkPass" auto-complete="off"></el-input>
+                    <el-input type="password" placeholder="请输入新的密码" v-model="ruleForm.checkPass" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item prop="elm">
-                    <el-input type="password" placeholder="请输入您的邮箱" v-model="ruleForm.elm" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item>
-                  <loginSider></loginSider>
-                </el-form-item>
-                <el-form-item prop="type">
-                    <el-checkbox v-model="ruleForm.checked" label="我已认真阅读并同意"></el-checkbox><a href="#">《用户注册协议》</a>
+                <el-form-item prop="checkPass">
+                    <el-input type="password" placeholder="请再次输入新的密码" v-model="ruleForm.checkPass" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm')" style="width:100%;">注册</el-button>
+                    <el-button type="primary" @click="submitForm('ruleForm')" style="width:100%;margin-top:40px;">确认</el-button>
                 </el-form-item>
             </el-form>
-            <p class="to-login">已有账号？ <router-link to="/">点此登录</router-link></p>
+            <p class="to-login"><router-link to="/forgetPwdStep1">返回</router-link></p>
         </div>
     </div>
 </template>
 
 <script>
-import loginSider from "../components/loginSider";
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -73,8 +63,7 @@ export default {
         pass: "",
         checkPass: "",
         user: "",
-        checked: "",
-        elm:''
+        checked: ""
       },
       rules: {
         pass: [{ validator: validatePass, trigger: "blur" }],
@@ -85,15 +74,14 @@ export default {
     };
   },
   components: {
-    loginSider
   },
   created() {},
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // alert("submit!");
-          this.$router.push("regSuc");
+          alert("submit!");
+          this.$router.push("signFlowFirmApprove");
         } else {
           console.log("error submit!!");
           return false;
@@ -108,13 +96,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../style/mixin";
-.register {
-  background: url(../assets/img/login-bj.png) center center no-repeat;
+@import "../../style/mixin";
+.forgetPwdStep2 {
+  background: url(../../assets/img/login-bj.png) center center no-repeat;
 }
 .table_container {
-  .wh(750px,700px);
-  .ctp(750px,700px);
+  .wh(750px,550px);
+  .ctp(750px,550px);
   background: #fff;
   box-sizing: border-box;
   padding: 70px 220px 0;

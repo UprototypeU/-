@@ -2,7 +2,6 @@ import { baseUrl } from './env'
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 	type = type.toUpperCase();
-	console.log(type)
 	url = baseUrl + url;
 
 	if (type == 'GET') {
@@ -14,7 +13,6 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 			dataStr = dataStr.substr(0, dataStr.lastIndexOf('&'));
 			url = url + '?' + dataStr;
 		}
-		console.log(dataStr)
 	}
 
 	if (window.fetch && method == 'fetch') {
@@ -37,9 +35,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 
 		try {
 			const response = await fetch(url, requestConfig);
-			console.log(response)
 			const responseJson = await response.json();
-			console.log(responseJson)
 			return responseJson
 		} catch (error) {
 			throw new Error(error)
@@ -52,7 +48,6 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 			} else {
 				requestObj = new ActiveXObject;
 			}
-			console.log(requestObj)
 
 			let sendData = '';
 			if (type == 'POST') {
@@ -62,17 +57,14 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 			requestObj.open(type, url, true);
 			requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			requestObj.send(sendData);
-			console.log(sendData)
 
 			requestObj.onreadystatechange = (r) => {
 				console.log(r)
 				if (requestObj.status == 200) {
 					let obj = requestObj.response
 					obj = JSON.parse(obj);
-					console.log(obj)
 					resolve(obj)
 				} else {
-					console.log(requestObj)
 					reject(requestObj)
 				}
 			}
